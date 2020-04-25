@@ -1,7 +1,10 @@
 # SolarSystem
 
 Fisierul de intrare:
-	-va avea pe primele linii urmatorul tip de input:
+	-prima linie va avea:
+		<timpul de referinta al configurarii>
+		
+	-pe urmatoarele linii, urmatorul tip de input:
 		"<planetName> <x-coordinate> <y-coordinate> <radius> <mass>"
 		
 	-dupa ce au fost introduse toate planetele cu coordonatele lor, urmatoarele linii
@@ -15,6 +18,6 @@ Fisierul de intrare:
 	radius = raza planetei (tip de data: double)
 	mass = masa planetei (tip de data: double)
 	movementType = clockwise/counterclockwise (tip de data: string)
-	
+	timpul de referinta al configurarii = timpul pentru care avem coordonatele planetelor
 
  
