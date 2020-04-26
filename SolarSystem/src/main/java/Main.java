@@ -1,9 +1,16 @@
-import entities.AstronomicObject;
+
+import console.UIConsole;
+import tests.ServiceTests;
+
 
 public class Main {
 
     public static void main(String[] args){
-        AstronomicObject obj = new AstronomicObject();
-        System.out.println(obj.toString());
+//        ServiceTests serviceTests = new ServiceTests("testConfiguration.txt");
+//        serviceTests.allTests();
+
+        String fileName = "SpaceConfiguration.txt";
+        UIConsole uiConsole = new UIConsole(fileName);
+        uiConsole.run();
     }
 }
