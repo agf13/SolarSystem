@@ -168,14 +168,13 @@ public class Repository {
 
         //double velocity = Math.sqrt((parentMass / radius) * );
         double velocitySquared = parentMass/radius;
-        velocitySquared = velocitySquared * 6.674 /100000000 /1000; //6.674 * 10^(-11) - value form gravitationl constant
-        double velocity = Math.sqrt(velocitySquared);
+        BigDecimal velocitySquaredBig = new BigDecimal(velocitySquared);
+        BigDecimal tenToEleven = new BigDecimal("100000000000");
+        velocitySquaredBig.divide(tenToEleven);
+//        velocitySquared = velocitySquared * 6.674 /100000000 /1000; //6.674 * 10^(-11) - value form gravitationl constant
+        velocitySquared = tenToEleven.doubleValue();
 
-//        System.out.println(velocitySquared);
-//        BigDecimal velocityBig = gravitationalConstant.multiply(parentMass);
-//        velocityBig.divide(radius, 2, RoundingMode.HALF_EVEN);
-//        System.out.println("big: " + velocityBig);
-//        double velocity = velocityBig.doubleValue();
+        double velocity = Math.sqrt(velocitySquared);
 
         object.setVelocity(velocity);
     }
