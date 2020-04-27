@@ -43,14 +43,10 @@ public class Service {
         double initialAngle = getInitialAngle(object);
         double finalAngle = getFinalAngle(object, initialAngle, relativeDistance);
 
-        //calculate the target x and y coordinates (coordinates of the parent + sin(finalAngle) pr cos(finalAngle))
-        double sign = 1;
-        if(object.getDirection() == AstronomicObject.Direction.CLOCKWISE){
-            sign = -1;
-        }
+        //calculate the target x and y coordinates
         AstronomicObject parent = repository.get(object.getParentName());
-        double targetX = parent.getX() + Math.cos(finalAngle) * sign * object.getDistanceToParent();
-        double targetY = parent.getY() + Math.sin(finalAngle) * sign * object.getDistanceToParent();
+        double targetX = parent.getX() + Math.cos(Math.toRadians(finalAngle)) * object.getDistanceToParent();
+        double targetY = parent.getY() + Math.sin(Math.toRadians(finalAngle)) * object.getDistanceToParent();
 
         //return pair
         result.add(targetX);
@@ -85,10 +81,13 @@ public class Service {
         def: calculates the angle of the satelite and returns it
      */
     public double getFinalAngle(AstronomicObject object, double initialAngle, double relativeDistance){
+        int sign = 1;
+        if(object.getDirection() == AstronomicObject.Direction.CLOCKWISE)
+            sign = -1;
         double angleToAdd = (relativeDistance / object.getTrajectoryDistance()) * 360;
         if(angleToAdd >= 360)
-            return ((initialAngle + angleToAdd) - 360);
-        return angleToAdd;
+            return ((initialAngle + angleToAdd * sign) - 360);
+        return (initialAngle + angleToAdd * sign);
     }
 
     /*

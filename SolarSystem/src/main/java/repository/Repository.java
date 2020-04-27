@@ -166,13 +166,15 @@ public class Repository {
 //        BigDecimal radius = new BigDecimal(object.getDistanceToParent());
 //        BigDecimal parentMass = new BigDecimal(object.getMass());
 
-        //double velocity = Math.sqrt((parentMass / radius) * );
+
         double velocitySquared = parentMass/radius;
+        velocitySquared = velocitySquared * 6.674;//6.674 * 10^(-11) - value form gravitationl constant
+
         BigDecimal velocitySquaredBig = new BigDecimal(velocitySquared);
         BigDecimal tenToEleven = new BigDecimal("100000000000");
-        velocitySquaredBig.divide(tenToEleven);
-//        velocitySquared = velocitySquared * 6.674 /100000000 /1000; //6.674 * 10^(-11) - value form gravitationl constant
-        velocitySquared = tenToEleven.doubleValue();
+
+        velocitySquaredBig = velocitySquaredBig.divide(tenToEleven, MathContext.DECIMAL32);
+        velocitySquared = velocitySquaredBig.doubleValue();
 
         double velocity = Math.sqrt(velocitySquared);
 
