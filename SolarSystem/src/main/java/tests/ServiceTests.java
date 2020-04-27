@@ -44,19 +44,31 @@ public class ServiceTests {
         assert(service.getInitialAngle(object) == 90);
     }
 
-    public void finalAngle_object_degres(){
+    public void finalAngle_firstBodyFromFIle_0degres(){
         AstronomicObject object = service.getAll().get(0); //the S1 object from resources/testConfiguration.txt
+
         double distanceCovered = object.getVelocity() * (AstronomicObject.getTargetTime() - AstronomicObject.getReferenceTime());
-//        System.out.println("Velocity: " + Double.toString(object.getVelocity()));
         double relativeDistance = distanceCovered - (int)(distanceCovered/object.getTrajectoryDistance()) * object.getTrajectoryDistance();
-//        System.out.println("Distance covered: " + Double.toString(distanceCovered));
-        System.out.println(service.getFinalAngle(object, service.getInitialAngle(object), relativeDistance));
+
+        int angle = (int)(service.getFinalAngle(object, service.getInitialAngle(object), relativeDistance));
+        assert(angle == 0 || angle == 1 || angle == 360 || angle == 359); //1 degree error from aproximation to int
+    }
+
+    public void finalAngle_secondBodyFromFile_90degres(){
+        AstronomicObject object = service.getAll().get(1); //the S1 object from resources/testConfiguration.txt
+
+        double distanceCovered = object.getVelocity() * (AstronomicObject.getTargetTime() - AstronomicObject.getReferenceTime());
+        double relativeDistance = distanceCovered - (int)(distanceCovered/object.getTrajectoryDistance()) * object.getTrajectoryDistance();
+
+        int angle = (int)(service.getFinalAngle(object, service.getInitialAngle(object), relativeDistance));
+        assert(angle == 90 || angle == 89 || angle == 91); //1 degree error from aproximation to int
     }
 
     public void allTests(){
         getAll_noInput_returnsObjects();
         initialAngle_objectOnSameXCoordinate_90degrees();
         initialAngle_objectOnSameYCoordinate_0degrees();
-        finalAngle_object_degres();
+        finalAngle_firstBodyFromFIle_0degres();
+        finalAngle_secondBodyFromFile_90degres();
     }
 }

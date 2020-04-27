@@ -134,16 +134,6 @@ public class AstronomicObject {
         this.direction = direction;
     }
 
-    public void setDirection(String directionName) {
-        if(directionName == "CLOCKWISE" || directionName == "CW")
-            this.direction = Direction.CLOCKWISE;
-        else if(directionName == "COUNTERCLOCKWISE" || directionName == "CCW")
-            this.direction = Direction.COUNTERCLOCKWISE;
-        else if(directionName == "STATIC"){
-            this.direction = Direction.STATIC;
-        }
-    }
-
     public double getDistanceToParent() {
         return distanceToParent;
     }

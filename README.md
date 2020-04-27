@@ -22,3 +22,5 @@ Fisierul de intrare:
 	timpul target al configurarii = timpul pentru care avem de calculat coordonatele corpurilor
 
  
+
+Functionalitatea java8 se gaseste in: console.UIConsole.run()
